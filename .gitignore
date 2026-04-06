@@ -1,0 +1,4 @@
+data/
+crime-data-explorer/node_modules/
+crime-data-explorer/.next/
+crime-data-explorer/.env
