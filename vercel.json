@@ -1,5 +1,4 @@
 {
   "framework": "nextjs",
-  "installCommand": "npm install --legacy-peer-deps",
-  "rootDirectory": "crime-data-explorer"
+  "installCommand": "npm install --legacy-peer-deps"
 }
