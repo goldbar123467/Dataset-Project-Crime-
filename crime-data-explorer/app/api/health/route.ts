@@ -4,6 +4,14 @@ import { crimeIncarceration, murderRates, unemploymentCounty } from "@/db/schema
 import { sql } from "drizzle-orm";
 
 export async function GET() {
+  if (!db) {
+    return NextResponse.json({
+      status: "unhealthy",
+      database: "no DATABASE_URL configured",
+      timestamp: new Date().toISOString(),
+    }, { status: 500 });
+  }
+
   try {
     const [crimeCount, murderCount, unemploymentCount] = await Promise.all([
       db.select({ count: sql<number>`count(*)` }).from(crimeIncarceration),

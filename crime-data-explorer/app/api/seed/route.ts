@@ -4,8 +4,11 @@ import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "@/db/schema";
 import { parse } from "csv-parse/sync";
 
-const sql = neon(process.env.DATABASE_URL!);
-const db = drizzle(sql, { schema });
+function getConnection() {
+  const s = neon(process.env.DATABASE_URL!);
+  const d = drizzle(s, { schema });
+  return { sql: s, db: d };
+}
 
 function stripBom(str: string): string {
   return str.replace(/^\uFEFF/, "");
@@ -55,6 +58,7 @@ export async function POST(request: Request) {
     const unemploymentFile = formData.get("unemployment") as File | null;
 
     const results: Record<string, string> = {};
+    const { sql, db } = getConnection();
 
     // Create tables
     await sql`CREATE TABLE IF NOT EXISTS crime_incarceration (
