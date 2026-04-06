@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd crime-data-explorer && npm install --legacy-peer-deps && npm run build",
+  "outputDirectory": "crime-data-explorer/.next",
+  "installCommand": "cd crime-data-explorer && npm install --legacy-peer-deps",
+  "framework": "nextjs",
+  "rootDirectory": "crime-data-explorer"
+}
